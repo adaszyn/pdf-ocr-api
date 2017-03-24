@@ -19,9 +19,12 @@ router.get('/session', sessionHandler);
 
 app.listen(3000);
 
-/* TO BE DONE
-   - flow -> request -> {token} -> dir 'token' -> images
-   - authorization
+/*
+DONE
+ - flow -> request -> {token} -> dir 'token' -> images
+
+TO BE DONE
+   - authorization (?)
    - OCR over images
    - Testing environment
 */
