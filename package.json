@@ -11,11 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "knex": "^0.12.9",
     "koa": "^2.2.0",
     "koa-body": "^2.0.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.0.1",
     "multer": "^1.3.0",
     "pdf-image": "^1.1.0",
+    "raw-body": "^2.2.0",
+    "sqlite3": "^3.1.8",
     "tmp": "0.0.31"
   }
 }
