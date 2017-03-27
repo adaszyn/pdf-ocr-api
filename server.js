@@ -6,9 +6,10 @@ const router = new Router();
 const pdfToImagesHandler = require('./app/routes/pdf-to-images/pdf-to-images.index')
 const sessionHandler = require('./app/routes/session/session.index')
 const imageToTextHandler = require('./app/routes/image-to-text/image-to-text.index')
-const bodyParser = require('koa-body')
+const bodyParser = require('koa-bodyparser');
 
 app
+    .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods());
 

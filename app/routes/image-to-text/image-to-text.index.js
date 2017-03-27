@@ -55,14 +55,8 @@ async function extractData (args) {
 
 
 async function handler(ctx) {
-    const TEMP_REQ_BODY = {
-        sections: [
-            [100, 430, 520, 160, 'Text']
-        ],
-        imageId: 'main_00',
-        sessionId: 'tmp-5892EjqPSU7NoUJp'
-    }
-    const ocrResponse = await extractData(TEMP_REQ_BODY)
+    const ocrResponse = await extractData(ctx.request.body)
+    console.log(ctx.request.body);
     ctx.body = {
         text: ocrResponse,
 
