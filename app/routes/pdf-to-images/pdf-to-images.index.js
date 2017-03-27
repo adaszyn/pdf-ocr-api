@@ -5,6 +5,8 @@ const getRawBody = require('raw-body')
 const FILE_NAME = 'main.pdf'
 const path = require('path')
 const createSession = require('../session/create-session')
+const exec = require('child_process').exec
+const glob = require('glob')
 
 function saveBufferToTempFile (directory, buffer) {
     return new Promise((resolve, reject) => {
@@ -39,15 +41,67 @@ async function saveBufferToFile(directory, buffer) {
     }
 }
 
-async function getImagesFromPdf (path) {
-    const pdfImage = new PDFImage(path)
-    const info = await pdfImage.getInfo()
-    const pageCount = info['Pages']
-    const pagesPaths = []
-    for (let i = 0; i < pageCount; i++) {
-        pagesPaths.push(pdfImage.convertPage(i))
-    }
-    return await Promise.all(pagesPaths)
+function  parseGetInfoCommandOutput (output) {
+    var info = {}
+    output.split("\n").forEach(function (line) {
+        if (line.match(/^(.*?):[ \t]*(.*)$/)) {
+            info[RegExp.$1] = RegExp.$2
+        }
+    })
+    return info
+}
+
+// function execPdfInfo (pdfPath) {
+//     return new Promise((resolve, reject) => {
+//         exec(`pdfinfo ${pdfPath}`, (err, stdout, stderr) => {
+//             if (err) {
+//                 resolve(stdout)
+//             } else {
+//                 reject(stderr)
+//             }
+//         })
+//     })
+// }
+//
+// async function getPdfInfo (pdfPath) {
+//     const pdfInfoOutput = await execPdfInfo(pdfPath)
+//     return parseGetInfoCommandOutput(pdfInfoOutput)
+// }
+
+function execConvert(location, outputFormat) {
+    return new Promise((resolve, reject) => {
+        const { name, dir } = path.parse(location)
+        const cmd = `convert -fill '#FFFFFF' -alpha remove -density 150 ${location} -quality 90 ${dir}/${name}_%02d.${outputFormat}`
+        exec(cmd, (err, stdout, stderr) => {
+            if (err) {
+                reject(stderr)
+            } else {
+                resolve(stdout)
+            }
+        })
+    })
+}
+
+function getAllFilesFromDir (dir, extension) {
+    return new Promise((resolve, reject) => {
+        glob(`${dir}/*.${extension}`, {absolute: false}, function (er, files) {
+            if (er) {
+                reject(err)
+            } else {
+                resolve(files)
+            }
+        })
+    })
+}
+
+async function getImagesFromPdf (location) {
+    const { dir } = path.parse(location)
+    await Promise.all([
+        execConvert(location, 'tif'),
+        execConvert(location, 'png')
+    ])
+    const images = await getAllFilesFromDir(dir, 'png')
+    return images
 }
 
 

@@ -5,16 +5,16 @@ const app = new Koa();
 const router = new Router();
 const pdfToImagesHandler = require('./app/routes/pdf-to-images/pdf-to-images.index')
 const sessionHandler = require('./app/routes/session/session.index')
+const imageToTextHandler = require('./app/routes/image-to-text/image-to-text.index')
+const bodyParser = require('koa-body')
 
 app
-    // .use(bodyParser({
-    //     formLimit: 925170000
-    // }))
     .use(router.routes())
     .use(router.allowedMethods());
 
 router.post('/', pdfToImagesHandler);
 router.get('/session', sessionHandler);
+router.post('/imageToText', imageToTextHandler);
 
 
 app.listen(3000);
