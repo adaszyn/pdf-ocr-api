@@ -19,10 +19,10 @@ function performOCR (absImagePath) {
     })
 }
 
-function getImageAbsolutePath(sessionId, imageId) {
+function getImageAbsolutePath(sessionId, imageId, extension = 'png') {
     // todo: this should be changed to work with multiple image formats
     const tempDir = os.tmpdir()
-    return path.join(tempDir, sessionId, imageId + '.png')
+    return path.join(tempDir, sessionId, imageId + '.' + extension)
 }
 
 function saveUznFileForImage (sessionId, imageId, uznFileContent) {
@@ -39,29 +39,14 @@ function saveUznFileForImage (sessionId, imageId, uznFileContent) {
     })
 }
 
-function convertImageToTif(imagePath) {
-    return new Promise((resolve, reject) => {
-        const { name, dir } = path.parse(imagePath)
-        const outputPath = path.join(dir, name + '.tif')
-        exec(`convert ${imagePath} ${outputPath}`, function (err, stdout, stderr) {
-            if (stderr) {
-                reject(stderr)
-            } else {
-                resolve(outputPath)
-            }
-        })
-    })
-}
 
 async function extractData (args) {
     try {
         const {sections, sessionId, imageId} = args
         const uznFileContent = uznSectionsToString(sections)
         await saveUznFileForImage(sessionId, imageId, uznFileContent)
-        const imageAbsolutePath = getImageAbsolutePath(sessionId, imageId)
-        console.log(imageAbsolutePath)
-        const tifImagePath = await convertImageToTif(imageAbsolutePath)
-        return await performOCR(tifImagePath)
+        const imageAbsolutePath = getImageAbsolutePath(sessionId, imageId, 'tif')
+        return await performOCR(imageAbsolutePath)
     } catch (e) {
         console.error(e)
     }
