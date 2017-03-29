@@ -7,13 +7,15 @@ const pdfToImagesHandler = require('./app/routes/pdf-to-images/pdf-to-images.ind
 const sessionHandler = require('./app/routes/session/session.index')
 const imageToTextHandler = require('./app/routes/image-to-text/image-to-text.index')
 const bodyParser = require('koa-bodyparser');
+const cors = require('kcors');
 
 app
     .use(bodyParser())
+    .use(cors())
     .use(router.routes())
     .use(router.allowedMethods());
 
-router.post('/', pdfToImagesHandler);
+router.post('/session', pdfToImagesHandler);
 router.get('/session', sessionHandler);
 router.post('/imageToText', imageToTextHandler);
 

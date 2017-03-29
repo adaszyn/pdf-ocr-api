@@ -4,11 +4,12 @@ const {TESS_DATA_DIR} = require('../../../config/config')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
+const { relativeSectionsToAbsolute } = require('../../util/uzn-util/uzn-util')
 
 function performOCR (absImagePath) {
     return new Promise((resolve, reject) => {
         const cmd = `tesseract ${absImagePath} stdout -l eng -psm 4 --tessdata-dir ${TESS_DATA_DIR}`
-        console.log('cmd', cmd);
+        console.log(cmd);
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 reject(stderr)
@@ -24,6 +25,22 @@ function getImageAbsolutePath(sessionId, imageId, extension = 'png') {
     const tempDir = os.tmpdir()
     return path.join(tempDir, sessionId, imageId + '.' + extension)
 }
+
+function getSize (sessionId, imageId) {
+    return new Promise((resolve, reject) => {
+        const imagePath = getImageAbsolutePath(sessionId, imageId, 'tif')
+        const cmd = `identify -format "%[fx:w] %[fx:h]" ${imagePath}`
+        exec(cmd, (err, stdout, stderr) => {
+            if (err) {
+                reject(stderr)
+            } else {
+                const [width, height] = stdout.split(' ')
+                resolve({width, height})
+            }
+        })
+    })
+}
+
 
 function saveUznFileForImage (sessionId, imageId, uznFileContent) {
     const tempDir = os.tmpdir()
@@ -43,7 +60,9 @@ function saveUznFileForImage (sessionId, imageId, uznFileContent) {
 async function extractData (args) {
     try {
         const {sections, sessionId, imageId} = args
-        const uznFileContent = uznSectionsToString(sections)
+        const {width, height} = await getSize(sessionId, imageId)
+        const absoluteSections = relativeSectionsToAbsolute(sections, width, height)
+        const uznFileContent = uznSectionsToString(absoluteSections )
         await saveUznFileForImage(sessionId, imageId, uznFileContent)
         const imageAbsolutePath = getImageAbsolutePath(sessionId, imageId, 'tif')
         return await performOCR(imageAbsolutePath)
@@ -56,7 +75,6 @@ async function extractData (args) {
 
 async function handler(ctx) {
     const ocrResponse = await extractData(ctx.request.body)
-    console.log(ctx.request.body);
     ctx.body = {
         text: ocrResponse,
 

@@ -71,7 +71,7 @@ function  parseGetInfoCommandOutput (output) {
 function execConvert(location, outputFormat) {
     return new Promise((resolve, reject) => {
         const { name, dir } = path.parse(location)
-        const cmd = `convert -fill '#FFFFFF' -alpha remove -density 150 ${location} -quality 90 ${dir}/${name}_%02d.${outputFormat}`
+        const cmd = `convert -fill '#FFFFFF' -density 150 ${location} -quality 90 -alpha Off ${dir}/${name}_%02d.${outputFormat}`
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 reject(stderr)
@@ -118,10 +118,15 @@ function readFileInBase64 (path) {
 }
 
 async function createImageMap(images) {
-    const result = {}
+    const result = []
     for (let image of images) {
         const fileName = path.parse(image).name
-        result[fileName] = await readFileInBase64(image)
+        const page = parseInt(fileName.split('_').pop())
+        result.push({
+            imageId: fileName,
+            page,
+            base64Image: await readFileInBase64(image)
+        })
     }
     return result
 }
@@ -140,7 +145,7 @@ async function handler(ctx, next) {
     await createSession(sessionId)
     ctx.body = {
         images: imagesInBase64,
-        session_id: sessionId
+        sessionId: sessionId
     }
 }
 
