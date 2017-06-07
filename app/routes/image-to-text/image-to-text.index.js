@@ -79,7 +79,6 @@ async function handler(ctx) {
         text: ocrResponse,
 
     }
-
 }
 
 module.exports = handler

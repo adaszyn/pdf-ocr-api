@@ -6,6 +6,7 @@ const router = new Router();
 const pdfToImagesHandler = require('./app/routes/pdf-to-images/pdf-to-images.index')
 const sessionHandler = require('./app/routes/session/session.index')
 const imageToTextHandler = require('./app/routes/image-to-text/image-to-text.index')
+const generateEpubHandler = require('./app/routes/generate-epub/generate-epub.index')
 const bodyParser = require('koa-bodyparser');
 const cors = require('kcors');
 
@@ -18,6 +19,7 @@ app
 router.post('/session', pdfToImagesHandler);
 router.get('/session', sessionHandler);
 router.post('/imageToText', imageToTextHandler);
+router.post('/generateEpub', generateEpubHandler );
 
 
 app.listen(3000);
