@@ -1,0 +1,21 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo "Start building pdf-ocr-api"
+  build:
+    commands:
+      - ls -alh
+      - npm install
+  post_build:
+    commands:
+      - echo preparing archive
+      - mkdir /root/build
+      - tar -czf /root/build/current.tar.gz .
+      - mv /root/build/current.tar.gz .
+artifacts:
+  files:
+    - current.tar.gz
+    - scripts/**/*
+    - appspec.yml
