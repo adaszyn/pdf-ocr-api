@@ -37,7 +37,7 @@ echo "[API] Delete all prevs processes"
 
 echo "[API] Start new process"
 # start new
-NODE_ENV=$NODE_ENV COLOR_SCRIPT=$CURRENT_DIR/www COLOR_CWD=$CURRENT_DIR pm2 startOrRestart $CURRENT_DIR/start.json
+NODE_ENV=$NODE_ENV COLOR_SCRIPT=$CURRENT_DIR/www COLOR_CWD=$CURRENT_DIR pm2 startOrRestart $CURRENT_DIR/ecosystem.config.js
 
 #cleanup
 echo "[API] Cleaning old folders"
