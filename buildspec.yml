@@ -4,8 +4,12 @@ phases:
   install:
     commands:
       - echo "Start building pdf-ocr-api"
+      - echo Install nvm
+      - "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash"
   build:
     commands:
+      - echo Build started on and ziping
+      - "export NVM_DIR=\"/root/.nvm\" &&  [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\" && nvm install 8 && nvm use 8"
       - ls -alh
       - npm install
   post_build:

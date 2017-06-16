@@ -3,3 +3,27 @@ os: linux
 files:
   - source: /
     destination: /opt/api/deploy
+
+hooks:
+  AfterInstall:
+    - location: /scripts/after-install.sh
+      timeout: 3600
+      runas: colortv
+  ApplicationStart:
+    - location: /scripts/application-start.sh
+      timeout: 3600
+      runas: colortv
+  ValidateService:
+    - location: /scripts/validate-service.sh
+      timeout: 3600
+      runas: root
+permissions:
+  - object: /opt/colortv/api
+    pattern: "deploy"
+    owner: wojtek
+    group: wojtek
+    mode: 755
+  - object: /opt/colortv/api/deploy
+    pattern: "**"
+    owner: wojtek
+    group: wojtek
