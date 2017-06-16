@@ -8,22 +8,22 @@ hooks:
   AfterInstall:
     - location: /scripts/after-install.sh
       timeout: 3600
-      runas: colortv
+      runas: wojtek
   ApplicationStart:
     - location: /scripts/application-start.sh
       timeout: 3600
-      runas: colortv
+      runas: wojtek
   ValidateService:
     - location: /scripts/validate-service.sh
       timeout: 3600
-      runas: root
+      runas: wojtek
 permissions:
-  - object: /opt/colortv/api
+  - object: /opt/api
     pattern: "deploy"
     owner: wojtek
     group: wojtek
     mode: 755
-  - object: /opt/colortv/api/deploy
+  - object: /opt/api/deploy
     pattern: "**"
     owner: wojtek
     group: wojtek
