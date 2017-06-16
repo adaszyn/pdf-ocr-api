@@ -13,10 +13,10 @@ hooks:
     - location: /scripts/application-start.sh
       timeout: 3600
       runas: wojtek
-  ValidateService:
-    - location: /scripts/validate-service.sh
-      timeout: 3600
-      runas: wojtek
+#  ValidateService:
+#    - location: /scripts/validate-service.sh
+#      timeout: 3600
+#      runas: wojtek
 permissions:
   - object: /opt/api
     pattern: "deploy"
