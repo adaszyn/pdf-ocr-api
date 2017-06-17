@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44ab314c-6965-4f56-94cf-e8f632a4775d" name="Default" comment="ecosystem.config update, .gitignore update">
+    <list default="true" id="44ab314c-6965-4f56-94cf-e8f632a4775d" name="Default" comment=".gitignore update, page-template and stylesheets updated">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/mock.db" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/empty-epub/OEBPS/Styles/page-template.xpgt" afterPath="$PROJECT_DIR$/assets/empty-epub/OEBPS/Styles/page-template.xpgt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/empty-epub/OEBPS/Styles/stylesheet.css" afterPath="$PROJECT_DIR$/assets/empty-epub/OEBPS/Styles/stylesheet.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ecosystem.config.js" afterPath="$PROJECT_DIR$/ecosystem.config.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +42,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="144">
+              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -358,7 +356,7 @@
       <workItem from="1497425191324" duration="7486000" />
       <workItem from="1497608890661" duration="7000" />
       <workItem from="1497608930935" duration="8151000" />
-      <workItem from="1497721777424" duration="341000" />
+      <workItem from="1497721777424" duration="654000" />
     </task>
     <task id="LOCAL-00002" summary="Title and author added to content.opf">
       <created>1496944825880</created>
@@ -409,11 +407,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497629974238</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ecosystem.config update, .gitignore update">
+      <created>1497722123849</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1497722123849</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22293000" />
+    <option name="totallyTimeSpent" value="22606000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="31" width="1920" height="1049" extended-state="0" />
@@ -458,7 +463,8 @@
     <MESSAGE value="appspec.yml user fix" />
     <MESSAGE value="ValidateService script removed" />
     <MESSAGE value="ecosystem.config update, .gitignore update" />
-    <option name="LAST_COMMIT_MESSAGE" value="ecosystem.config update, .gitignore update" />
+    <MESSAGE value=".gitignore update, page-template and stylesheets updated" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore update, page-template and stylesheets updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -794,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="144">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>

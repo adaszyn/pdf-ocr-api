@@ -1,3 +1,13 @@
 node_modules/
-.idea/*
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/deployment.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/pdf-ocr-api.iml
+.idea/webServers.xml
+
 db/mock.db
