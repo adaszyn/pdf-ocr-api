@@ -10,26 +10,29 @@ const generateEpubHandler = require('./app/routes/generate-epub/generate-epub.in
 const bodyParser = require('koa-bodyparser');
 const cors = require('kcors');
 
+const servicePrefix = process.env.NODE_ENV === 'production'
+    ? '/ocr-api/'
+    : '/'
 app
     .use(bodyParser())
     .use(cors())
     .use(router.routes())
     .use(router.allowedMethods());
 
-router.post('/session', pdfToImagesHandler);
-router.get('/session', sessionHandler);
-router.post('/imageToText', imageToTextHandler);
-router.post('/generateEpub', generateEpubHandler );
+router.post(`${servicePrefix}session`, pdfToImagesHandler);
+router.get(`${servicePrefix}session`, sessionHandler);
+router.post(`${servicePrefix}imageToText`, imageToTextHandler);
+router.post(`${servicePrefix}generateEpub`, generateEpubHandler);
 
 
 app.listen(3000);
 
 /*
-DONE
+ DONE
  - flow -> request -> {token} -> dir 'token' -> images
 
-TO BE DONE
-   - authorization (?)
-   - OCR over images
-   - Testing environment
-*/
+ TO BE DONE
+ - authorization (?)
+ - OCR over images
+ - Testing environment
+ */
