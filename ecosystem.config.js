@@ -3,7 +3,7 @@ module.exports = {
 
     // First application
     {
-      name      : 'API',
+      name      : 'OCR-API',
       script    : 'server.js',
       env: {
         COMMON_VARIABLE: 'true'
@@ -12,21 +12,17 @@ module.exports = {
         NODE_ENV: 'production'
       }
     }
-  ]
+  ],
 
-  /**
-   * Deployment section
-   * http://pm2.keymetrics.io/docs/usage/deployment/
-   */
-  // deploy : {
-  //   production : {
-  //     user : 'node',
-  //     host : '212.83.163.1',
-  //     ref  : 'origin/master',
-  //     repo : 'git@github.com:repo.git',
-  //     path : '/var/www/production',
-  //     'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
-  //   },
+  deploy : {
+    production : {
+      user : 'wojtek',
+      host : process.env.EC2_INSTANCE_IP,
+      ref  : 'origin/master',
+      repo : 'git@github.com:repo.git',
+      path : '/opt/ocr-api',
+      'post-deploy' : 'NODE_ENV=development npm install && pm2 reload ecosystem.config.js --env production'
+    }
   //   dev : {
   //     user : 'node',
   //     host : '212.83.163.1',
@@ -38,5 +34,5 @@ module.exports = {
   //       NODE_ENV: 'dev'
   //     }
   //   }
-  // }
+  }
 };
