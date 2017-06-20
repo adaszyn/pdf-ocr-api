@@ -11,3 +11,7 @@ node_modules/
 .idea/webServers.xml
 
 db/mock.db
+
+db/development.config.js
+db/production.config.js
+db/local.config.js
