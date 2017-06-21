@@ -71,7 +71,7 @@ function  parseGetInfoCommandOutput (output) {
 function execConvert(location, outputFormat) {
     return new Promise((resolve, reject) => {
         const { name, dir } = path.parse(location)
-        const cmd = `convert -fill '#FFFFFF' -density 150 ${location} -quality 90 -alpha Off ${dir}/${name}_%02d.${outputFormat}`
+        const cmd = `convert -fill '#FFFFFF' -density 300 ${location} -quality 90 -alpha Off ${dir}/${name}_%02d.${outputFormat}`
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 reject(stderr)
