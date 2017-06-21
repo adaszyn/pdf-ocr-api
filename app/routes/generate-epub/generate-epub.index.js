@@ -3,10 +3,6 @@ const ejs = require('ejs')
 const fs = require('fs')
 const path = require('path')
 
-async function generateEpubFile(sections) {
-    return sections
-}
-
 async function handler(ctx) {
     const { publisher, author, title } = ctx.request.body
     const archive = archiver('zip', {
