@@ -1,3 +1,5 @@
+const join = require('path').join
+
 module.exports = {
-    TESS_DATA_DIR: '/home/wojtek/js/pdf-ocr-api/tessdata'
+    TESS_DATA_DIR: join(__dirname, '../tessdata')
 }
