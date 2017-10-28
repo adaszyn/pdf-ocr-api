@@ -23,7 +23,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
 #      - run: npm test
-      - run: echo "Instance ip "
+      - run: ssh-keyscan -H $EC2_INSTANCE_IP >> ~/.ssh/known_hosts
       - run: echo $EC2_INSTANCE_IP
       - run: EC2_INSTANCE_IP=$EC2_INSTANCE_IP npm run deploy:production
 
