@@ -23,6 +23,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
 #      - run: npm test
-      - run: npm run deploy:production
+      - run: echo "Instance ip "
+      - run: echo $EC2_INSTANCE_IP
+      - run: EC2_INSTANCE_IP=$EC2_INSTANCE_IP npm run deploy:production
 
 
