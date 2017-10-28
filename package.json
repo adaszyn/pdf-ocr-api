@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:production": "pm2 deploy ecosystem.config.json production"
+    "deploy:production": "pm2 deploy ecosystem.config.js production"
   },
   "keywords": [],
   "author": "",
