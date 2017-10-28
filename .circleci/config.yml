@@ -22,7 +22,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm test
+#      - run: npm test
       - run: pm2 deploy ecosystem.config.json production
 
 
