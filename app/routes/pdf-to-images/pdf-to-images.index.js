@@ -51,23 +51,6 @@ function  parseGetInfoCommandOutput (output) {
     return info
 }
 
-// function execPdfInfo (pdfPath) {
-//     return new Promise((resolve, reject) => {
-//         exec(`pdfinfo ${pdfPath}`, (err, stdout, stderr) => {
-//             if (err) {
-//                 resolve(stdout)
-//             } else {
-//                 reject(stderr)
-//             }
-//         })
-//     })
-// }
-//
-// async function getPdfInfo (pdfPath) {
-//     const pdfInfoOutput = await execPdfInfo(pdfPath)
-//     return parseGetInfoCommandOutput(pdfInfoOutput)
-// }
-
 function execConvert(location, outputFormat) {
     return new Promise((resolve, reject) => {
         const { name, dir } = path.parse(location)
